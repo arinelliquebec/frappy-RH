@@ -1,5 +1,24 @@
 # 🚀 FrappYOU - Professional HR System with AI
 
+<div align="center">
+
+## 🌟 **WORKING FRAPPYOU HR APP** 🌟
+
+# **[👉 www.frappyou.app 👈](https://www.frappyou.app)**
+
+### 🔐 **Try it now with these credentials:**
+
+| | |
+|:---:|:---:|
+| **CPF** | `12345678990` |
+| **Password** | `italian` |
+
+> ⚡ **Built in just 2 weeks!** Still improving, but moving fast. 🚀
+
+---
+
+</div>
+
 [![CI](https://github.com/your-org/frappyou/actions/workflows/ci.yml/badge.svg)](https://github.com/your-org/frappyou/actions/workflows/ci.yml)
 [![CD](https://github.com/your-org/frappyou/actions/workflows/cd.yml/badge.svg)](https://github.com/your-org/frappyou/actions/workflows/cd.yml)
 [![Security](https://github.com/your-org/frappyou/actions/workflows/security.yml/badge.svg)](https://github.com/your-org/frappyou/actions/workflows/security.yml)
@@ -8,16 +27,6 @@
 
 > **Complete Human Resources Management Platform** with integrated artificial intelligence
 > **Stack**: Go (Fiber) + Next.js + Azure OpenAI + SQL Server
-
----
-
-## 🌐 Live Demo
-
-| Environment | URL | Description |
-|-------------|-----|-------------|
-| **🔗 Full App (Azure)** | [frappyou.azurewebsites.net](https://frappyou.azurewebsites.net) | Complete application with backend + AI |
-| **🔗 Frontend (Vercel)** | [frappyou.vercel.app](https://frappyou.vercel.app) | Frontend preview |
-| **📡 API Health** | [api.frappyou.com/health](https://api.frappyou.com/health) | Backend status |
 
 ---
 

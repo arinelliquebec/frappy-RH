@@ -1,20 +1,30 @@
 # 🚀 FrappYOU - Sistema HR Professionale con IA
 
+<div align="center">
+
+## 🌟 **APP HR FRAPPYOU FUNZIONANTE** 🌟
+
+# **[👉 www.frappyou.app 👈](https://www.frappyou.app)**
+
+### 🔐 **Provalo subito con queste credenziali:**
+
+| | |
+|:---:|:---:|
+| **CPF** | `12345678990` |
+| **Password** | `italian` |
+
+> ⚡ **Costruito in sole 2 settimane!** Ancora in miglioramento, ma procede veloce. 🚀
+
+---
+
+</div>
+
 [![CI](https://github.com/your-org/frappyou/actions/workflows/ci.yml/badge.svg)](https://github.com/your-org/frappyou/actions/workflows/ci.yml)
 [![CD](https://github.com/your-org/frappyou/actions/workflows/cd.yml/badge.svg)](https://github.com/your-org/frappyou/actions/workflows/cd.yml)
 [![Security](https://github.com/your-org/frappyou/actions/workflows/security.yml/badge.svg)](https://github.com/your-org/frappyou/actions/workflows/security.yml)
 
 > **Piattaforma completa di gestione delle risorse umane** con intelligenza artificiale integrata
 > **Stack**: Go (Fiber) + Next.js + Azure OpenAI + SQL Server
-
----
-
-## 🌐 Demo Live
-
-| Ambiente | URL | Descrizione |
-|----------|-----|-------------|
-| **🔗 App Completa (Azure)** | [frappyou.azurewebsites.net](https://frappyou.azurewebsites.net) | Applicazione completa con backend + IA |
-| **🔗 Frontend (Vercel)** | [frappyou.vercel.app](https://frappyou.vercel.app) | Anteprima frontend |
 
 ---
 
