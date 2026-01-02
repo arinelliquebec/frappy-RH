@@ -1,0 +1,39 @@
+# Binaries
+.env
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+frappyou-api
+
+# Test binary
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Dependency directories
+vendor/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Uploads (em produção use S3/Azure Blob)
+uploads/

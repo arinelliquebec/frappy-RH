@@ -1,0 +1,34 @@
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Binários locais
+frappyou-api
+*.exe
+
+# Arquivos de ambiente local
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+
+# Arquivos de teste
+*_test.go
+testdata/
+
+# Documentação
+README.md
+docs/
+
+# Scripts de deploy
+deploy.sh
+azure-deploy.sh
+

@@ -1,0 +1,70 @@
+# ===========================================
+# FrappYOU API - Variáveis de Ambiente
+# ===========================================
+# ATENÇÃO: Copie este arquivo para .env e configure os valores
+# NUNCA commite o arquivo .env no repositório!
+
+# Servidor
+PORT=8080
+
+# JWT (OBRIGATÓRIO - Use uma chave forte de pelo menos 32 caracteres)
+# Gere uma chave segura: openssl rand -base64 32
+JWT_SECRET=
+
+# Banco de Dados SQL Server
+# Para desenvolvimento local (Docker):
+DB_SERVER=localhost
+DB_PORT=1433
+DB_USER=sa
+DB_PASSWORD=
+DB_NAME=frappyou
+
+# Para Azure SQL Server:
+# DB_SERVER=seu-servidor.database.windows.net
+# DB_PORT=1433
+# DB_USER=seu-usuario
+# DB_PASSWORD=
+# DB_NAME=frappyou
+
+# CORS - URLs permitidas (separadas por vírgula)
+ALLOWED_ORIGINS=http://localhost:3000
+
+# ---------- Rate Limiting (Opcional) ----------
+# Autenticação (login, signup) - proteção contra brute force
+# RATE_LIMIT_AUTH_MAX=5          # Máximo de tentativas
+# RATE_LIMIT_AUTH_WINDOW=1       # Janela em minutos
+
+# Endpoints críticos (reset senha) - mais restritivo
+# RATE_LIMIT_STRICT_MAX=3        # Máximo de tentativas
+# RATE_LIMIT_STRICT_WINDOW=5     # Janela em minutos
+
+# APIs gerais - por usuário autenticado
+# RATE_LIMIT_API_MAX=100         # Requisições por minuto
+# RATE_LIMIT_API_WINDOW=1
+
+# Uploads - evita abuso de storage
+# RATE_LIMIT_UPLOAD_MAX=10       # Uploads por 5 minutos
+# RATE_LIMIT_UPLOAD_WINDOW=5
+
+# Global por IP - proteção DDoS
+# RATE_LIMIT_GLOBAL_MAX=300      # Requisições por minuto
+# RATE_LIMIT_GLOBAL_WINDOW=1
+
+# ---------- Azure OpenAI (Chat IA) ----------
+# AZURE_OPENAI_ENDPOINT=https://seu-recurso.openai.azure.com/
+# AZURE_OPENAI_KEY=sua-chave-aqui
+# AZURE_OPENAI_DEPLOYMENT=gpt-4-frappyou
+# AZURE_OPENAI_API_VERSION=2024-02-15-preview
+
+# ---------- Redis Cache (Opcional) ----------
+# Para desenvolvimento local (Docker):
+# REDIS_URL=localhost:6379
+# REDIS_PASSWORD=
+
+# Para Azure Cache for Redis:
+# REDIS_URL=rediss://seu-redis.redis.cache.windows.net:6380
+# Ou use a connection string completa:
+# REDIS_URL=rediss://:sua-chave-primaria@seu-redis.redis.cache.windows.net:6380
+
+# Nota: Se REDIS_URL não estiver configurado, o cache será desabilitado
+# e a aplicação continuará funcionando normalmente (sem cache)

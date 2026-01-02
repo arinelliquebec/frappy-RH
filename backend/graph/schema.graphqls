@@ -1,0 +1,543 @@
+# GraphQL Schema for FrappYou HR System
+# =====================================
+
+scalar DateTime
+scalar Upload
+
+# ============== ENUMS ==============
+
+enum UserRole {
+  user
+  admin
+}
+
+enum DocumentStatus {
+  pending
+  approved
+  rejected
+}
+
+enum VacationType {
+  ferias
+  abono
+  licenca
+  atestado
+  folga
+  home_office
+}
+
+enum VacationStatus {
+  pending
+  approved
+  rejected
+  canceled
+}
+
+# ============== TYPES ==============
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  cpf: String!
+  company: String
+  position: String
+  role: UserRole!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  # Relationships
+  documents: [Document!]!
+  vacations: [Vacation!]!
+  vacationBalance: VacationBalance
+  surveyResponse: SurveyResponse
+}
+
+type Colaborador {
+  id: Int!
+  cpf: String
+  nome: String
+  codinome: String
+  emailEmpresarial: String
+  emailPessoal: String
+  telefone1: String
+  telefone2: String
+  rg: String
+  cnh: String
+  sexo: String
+  estadoCivil: String
+  dataNascimento: String
+  cargo: String
+  filial: String
+  ativo: Boolean
+  hasSystemUser: Boolean!
+  systemUserId: String
+}
+
+type Document {
+  id: ID!
+  userId: String!
+  name: String!
+  originalName: String!
+  type: String!
+  mimeType: String!
+  size: Int!
+  path: String!
+  url: String
+  description: String
+  isPublic: Boolean!
+  status: DocumentStatus!
+  reviewedBy: String
+  reviewedAt: DateTime
+  rejectReason: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  # Relationships
+  user: User
+  reviewer: User
+}
+
+type Vacation {
+  id: ID!
+  userId: String!
+  type: VacationType!
+  startDate: DateTime!
+  endDate: DateTime!
+  totalDays: Int!
+  reason: String
+  status: VacationStatus!
+  approvedBy: String
+  approvedAt: DateTime
+  rejectReason: String
+  attachment: String
+  notes: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  # Relationships
+  user: User
+  approver: User
+}
+
+type VacationBalance {
+  id: ID!
+  userId: String!
+  totalDays: Int!
+  usedDays: Int!
+  pendingDays: Int!
+  availableDays: Int!
+  periodStart: DateTime!
+  periodEnd: DateTime!
+  abonoDays: Int!
+  usedAbono: Int!
+
+  # Relationships
+  user: User
+}
+
+type SurveyResponse {
+  id: ID!
+  userId: String!
+  answers: String!
+  score: Float!
+  createdAt: DateTime!
+
+  # Relationships
+  user: User
+}
+
+type SurveyResults {
+  userId: String!
+  overallScore: Float!
+  categories: CategoryScores!
+  recommendations: [String!]!
+  createdAt: DateTime!
+}
+
+type CategoryScores {
+  demandas: Float!
+  controle: Float!
+  apoio: Float!
+  relacionamentos: Float!
+  papel: Float!
+  mudanca: Float!
+}
+
+type CalendarEvent {
+  id: ID!
+  title: String!
+  description: String
+  type: String!
+  startDate: DateTime!
+  endDate: DateTime!
+  color: String
+  allDay: Boolean!
+  createdBy: String
+  createdAt: DateTime!
+
+  # Relationships
+  creator: User
+}
+
+type AuditLog {
+  id: ID!
+  adminId: String!
+  adminName: String!
+  adminEmail: String!
+  action: String!
+  entityType: String!
+  entityId: String!
+  entityName: String!
+  description: String!
+  ipAddress: String!
+  createdAt: DateTime!
+}
+
+type Filial {
+  nome: String!
+}
+
+# ============== STATISTICS ==============
+
+type VacationStats {
+  totalRequests: Int!
+  pendingRequests: Int!
+  approvedRequests: Int!
+  rejectedRequests: Int!
+  pendingFerias: Int!
+  pendingAusencias: Int!
+}
+
+type DocumentStats {
+  totalDocuments: Int!
+  pendingDocuments: Int!
+  approvedDocuments: Int!
+  rejectedDocuments: Int!
+}
+
+type DashboardStats {
+  totalUsers: Int!
+  totalAdmins: Int!
+  totalDocuments: Int!
+  pendingDocuments: Int!
+  totalVacations: Int!
+  pendingVacations: Int!
+}
+
+# ============== AUTH TYPES ==============
+
+type AuthPayload {
+  success: Boolean!
+  token: String
+  user: User
+  error: String
+}
+
+type FullProfile {
+  id: Int!
+  cpf: String
+  nome: String
+  codinome: String
+  emailEmpresarial: String
+  emailPessoal: String
+  telefone1: String
+  telefone2: String
+  rg: String
+  cnh: String
+  sexo: String
+  estadoCivil: String
+  dataNascimento: String
+  cargo: String
+  filial: String
+}
+
+# ============== PAGINATION ==============
+
+type UserConnection {
+  nodes: [User!]!
+  totalCount: Int!
+  pageInfo: PageInfo!
+}
+
+type ColaboradorConnection {
+  nodes: [Colaborador!]!
+  totalCount: Int!
+}
+
+type DocumentConnection {
+  nodes: [Document!]!
+  totalCount: Int!
+  pageInfo: PageInfo!
+}
+
+type VacationConnection {
+  nodes: [Vacation!]!
+  totalCount: Int!
+  pageInfo: PageInfo!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  currentPage: Int!
+  totalPages: Int!
+}
+
+# ============== INPUTS ==============
+
+input LoginInput {
+  cpf: String!
+  password: String!
+  rememberMe: Boolean
+}
+
+input SignupInput {
+  name: String!
+  email: String!
+  cpf: String!
+  password: String!
+  company: String
+  answers: String!
+}
+
+input UpdateUserInput {
+  name: String
+  email: String
+  company: String
+  position: String
+}
+
+input UpdateProfileInput {
+  nome: String
+  codinome: String
+  emailEmpresarial: String
+  emailPessoal: String
+  telefone1: String
+  telefone2: String
+  rg: String
+  cnh: String
+  sexo: String
+  estadoCivil: String
+  dataNascimento: String
+  cargo: String
+  filial: String
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  cpf: String!
+  password: String!
+  role: UserRole
+  emailPessoal: String
+  codinome: String
+  sexo: String
+  dataNascimento: String!
+  estadoCivil: String
+  rg: String
+  cnh: String
+  telefone1: String
+  telefone2: String
+  cargo: String
+  filial: String
+}
+
+input DocumentFilterInput {
+  userId: String
+  status: DocumentStatus
+  type: String
+}
+
+input CreateVacationInput {
+  type: VacationType!
+  startDate: String!
+  endDate: String!
+  reason: String
+  notes: String
+}
+
+input UpdateVacationInput {
+  type: VacationType
+  startDate: String
+  endDate: String
+  reason: String
+  notes: String
+}
+
+input VacationApprovalInput {
+  status: VacationStatus!
+  rejectReason: String
+}
+
+input VacationFilterInput {
+  userId: String
+  type: VacationType
+  status: VacationStatus
+  startDate: String
+  endDate: String
+}
+
+input CreateCalendarEventInput {
+  title: String!
+  description: String
+  type: String!
+  startDate: String!
+  endDate: String!
+  color: String
+  allDay: Boolean
+}
+
+input UpdateCalendarEventInput {
+  title: String
+  description: String
+  type: String
+  startDate: String
+  endDate: String
+  color: String
+  allDay: Boolean
+}
+
+input ColaboradorFilterInput {
+  search: String
+  filial: String
+}
+
+# ============== QUERIES ==============
+
+type Query {
+  # Auth & User
+  me: User
+  user(id: ID!): User
+  users(search: String, page: Int, perPage: Int): UserConnection!
+
+  # Colaboradores (from external DB)
+  colaboradores(
+    filter: ColaboradorFilterInput
+    page: Int
+    perPage: Int
+  ): ColaboradorConnection!
+  colaborador(id: Int!): Colaborador
+  searchColaboradores(search: String!): [Colaborador!]!
+  filiais: [Filial!]!
+
+  # Profile
+  fullProfile: FullProfile
+  colaboradorProfile(colaboradorId: Int!): FullProfile
+
+  # Documents
+  documents(
+    filter: DocumentFilterInput
+    page: Int
+    perPage: Int
+  ): DocumentConnection!
+  document(id: ID!): Document
+  myDocuments: [Document!]!
+  documentStats: DocumentStats!
+
+  # Vacations
+  vacations(
+    filter: VacationFilterInput
+    page: Int
+    perPage: Int
+  ): VacationConnection!
+  vacation(id: ID!): Vacation
+  myVacations: [Vacation!]!
+  myVacationBalance: VacationBalance
+  vacationStats: VacationStats!
+  teamVacations(month: Int, year: Int): [Vacation!]!
+
+  # Calendar
+  calendarEvents(startDate: String, endDate: String): [CalendarEvent!]!
+  calendarEvent(id: ID!): CalendarEvent
+
+  # Survey
+  surveyQuestions: [SurveyQuestion!]!
+  mySurveyResults: SurveyResults
+
+  # Admin
+  dashboardStats: DashboardStats!
+  auditLogs(userId: String, page: Int, perPage: Int): [AuditLog!]!
+
+  # Validation
+  validateCPF(cpf: String!): CPFValidation!
+}
+
+type SurveyQuestion {
+  id: Int!
+  text: String!
+  scaleType: String!
+  scaleDirection: String!
+  category: String!
+}
+
+type CPFValidation {
+  valid: Boolean!
+  colaboradorId: Int
+  nome: String
+  hasSystemUser: Boolean!
+  message: String
+}
+
+# ============== MUTATIONS ==============
+
+type Mutation {
+  # Auth
+  login(input: LoginInput!): AuthPayload!
+  signup(input: SignupInput!): AuthPayload!
+  logout: Boolean!
+  activateAccount(cpf: String!, password: String!): AuthPayload!
+
+  # User Management (Admin)
+  createUser(input: CreateUserInput!): User!
+  updateUser(id: ID!, input: UpdateUserInput!): User!
+  deleteUser(id: ID!): Boolean!
+  resetUserPassword(id: ID!, newPassword: String!): Boolean!
+  toggleUserRole(id: ID!): User!
+
+  # Profile
+  updateProfile(input: UpdateUserInput!): User!
+  updateFullProfile(input: UpdateProfileInput!): FullProfile!
+  updateColaboradorProfile(
+    colaboradorId: Int!
+    input: UpdateProfileInput!
+  ): Boolean!
+
+  # Documents
+  uploadDocument(file: Upload!, type: String!, description: String): Document!
+  deleteDocument(id: ID!): Boolean!
+  approveDocument(id: ID!): Document!
+  rejectDocument(id: ID!, reason: String!): Document!
+
+  # Vacations
+  createVacation(input: CreateVacationInput!): Vacation!
+  updateVacation(id: ID!, input: UpdateVacationInput!): Vacation!
+  deleteVacation(id: ID!): Boolean!
+  approveVacation(id: ID!, input: VacationApprovalInput!): Vacation!
+  cancelVacation(id: ID!): Vacation!
+
+  # Calendar Events (Admin)
+  createCalendarEvent(input: CreateCalendarEventInput!): CalendarEvent!
+  updateCalendarEvent(id: ID!, input: UpdateCalendarEventInput!): CalendarEvent!
+  deleteCalendarEvent(id: ID!): Boolean!
+
+  # Survey
+  submitSurvey(answers: String!): SurveyResults!
+}
+
+# ============== SUBSCRIPTIONS ==============
+
+type Subscription {
+  # Real-time updates
+  vacationUpdated: Vacation!
+  documentUpdated: Document!
+  newNotification: Notification!
+}
+
+type Notification {
+  id: ID!
+  type: String!
+  title: String!
+  message: String!
+  createdAt: DateTime!
+}
