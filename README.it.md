@@ -735,4 +735,6 @@ Questo progetto è sotto licenza MIT - vedere file [LICENSE](LICENSE) per dettag
 
 ---
 
-**Fatto con ❤️ dal Team FrappYOU**
+**Fatto con ❤️ dal Arinelli**
+
+*Ultimo aggiornamento: 2 Gennaio 2026*
