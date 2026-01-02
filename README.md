@@ -5,6 +5,14 @@
 
 ---
 
+## 🔐 Demo Access Credentials
+
+| Type | CPF | Password |
+|------|-----|----------|
+| **Regular User** | `12345678990` | `italian` |
+
+---
+
 ## 📋 Table of Contents
 
 - [Overview](#overview)

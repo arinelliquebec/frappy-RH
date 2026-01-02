@@ -5,6 +5,14 @@
 
 ---
 
+## 🔐 Credenziali di Accesso Demo
+
+| Tipo | CPF | Password |
+|------|-----|----------|
+| **Utente Comune** | `12345678990` | `italian` |
+
+---
+
 ## 📋 Indice
 
 - [Panoramica](#panoramica)
